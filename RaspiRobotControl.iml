@@ -7,7 +7,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="com.pi4j:pi4j-device:1.0" level="project" />
     <orderEntry type="library" exported="" name="com.pi4j:pi4j-core:1.0" level="project" />
+    <orderEntry type="library" exported="" name="com.pi4j:pi4j-device:1.0" level="project" />
   </component>
 </module>
