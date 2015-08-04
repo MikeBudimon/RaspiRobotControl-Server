@@ -2,8 +2,10 @@ package de.raspirobotcontrol;
 
 import com.pi4j.io.gpio.*;
 
+import java.io.IOException;
+
 /**
- * Created by MikeBudimon on 23.07.2015.
+ * Measuring the distance to an object with a ultrasonic sensor
  */
 public class DistanceMonitor implements Runnable {
 
@@ -11,22 +13,26 @@ public class DistanceMonitor implements Runnable {
     private final GpioPinDigitalInput pinEcho;  // receives impulses
     private final GpioPinDigitalOutput pinTrigger; // sends impulses
     private final GpioPinDigitalOutput pinLedWarning; // distance Led status(red if too near)
+    private boolean flag = false;
 
 
+    // Constructor
     protected DistanceMonitor(GpioController gpio, Pin pinTrigger, Pin pinEcho, Pin pinLedWarning) {
         this.pinEcho = gpio.provisionDigitalInputPin(pinEcho);
-        this.pinTrigger = gpio.provisionDigitalOutputPin(pinTrigger);
-        this.pinLedWarning = gpio.provisionDigitalOutputPin(pinLedWarning);
-
-        this.pinTrigger.low();
-        this.pinLedWarning.low();
+        this.pinTrigger = gpio.provisionDigitalOutputPin(pinTrigger, PinState.LOW);
+        this.pinLedWarning = gpio.provisionDigitalOutputPin(pinLedWarning, PinState.LOW);
 
         this.pinTrigger.setShutdownOptions(true, PinState.LOW);
         this.pinLedWarning.setShutdownOptions(true, PinState.LOW);
-
     }
 
 
+    /**
+     * Measures distance to an object
+     *
+     * @return Distance to an object in cm
+     * @throws InterruptedException
+     */
     public double measureDistance() throws InterruptedException {
 
         this.triggerSensor();
@@ -49,6 +55,11 @@ public class DistanceMonitor implements Runnable {
 
     }
 
+    /**
+     * Sends one impulse for 10 microseconds
+     *
+     * @throws InterruptedException
+     */
     private void triggerSensor() throws InterruptedException {
 
         pinTrigger.high();
@@ -60,26 +71,37 @@ public class DistanceMonitor implements Runnable {
     @Override
     public void run() {
 
-        while (true){
+        flag = true;
+
+        while (flag) {
             try {
                 System.out.printf("Object is %.1f cm away.\n", measureDistance());
 
+                // Sends the measured distance to the client when successfully connected.
+                if (Server.started) {
+                    Server.out.flush();
+                    Server.out.writeUTF(String.valueOf(measureDistance()));
+                }
+
                 // blink red led when distance is smaller than 25 cm
-                if (measureDistance() < 25.0){
+                if (measureDistance() < 25.0) {
                     pinLedWarning.blink(200, 1000);
                 } else {
                     pinLedWarning.low();
                 }
 
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            try {
                 Thread.sleep(1100);
-            } catch (InterruptedException e) {
+
+            } catch (InterruptedException | IOException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    /**
+     * Stops the while loop.
+     */
+    public void stop() {
+        flag = false;
     }
 }
