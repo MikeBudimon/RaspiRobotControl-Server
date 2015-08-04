@@ -2,10 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="86f7aa44-5001-4396-a69d-384dfed193fe" name="Default" comment=" - Websocket server which reads the commands from a connected client added.&#10; - Websocket server and DistanceMonitor optimized.">
-      <change type="DELETED" beforePath="F:\IdeaProjects\RaspiRobotControl - Websocket\.gitattributes" afterPath="" />
-      <change type="DELETED" beforePath="F:\IdeaProjects\RaspiRobotControl - Websocket\.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="F:\IdeaProjects\RaspiRobotControl - Websocket\LICENSE.md" afterPath="" />
+      <change type="DELETED" beforePath="F:\IdeaProjects\RaspiRobotControl - Websocket\out\artifacts\RaspiRobotControl_jar\RaspiRobotControl.jar" afterPath="" />
+      <change type="DELETED" beforePath="F:\IdeaProjects\RaspiRobotControl - Websocket\out\production\RaspiRobotControl\META-INF\MANIFEST.MF" afterPath="" />
+      <change type="DELETED" beforePath="F:\IdeaProjects\RaspiRobotControl - Websocket\out\production\RaspiRobotControl\de\raspirobotcontrol\DistanceMonitor.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MOVED" beforePath="F:\IdeaProjects\RaspiRobotControl - Websocket\.idea\artifacts\RaspiRobotControl_jar.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/RaspiRobotControl_Websocket_jar.xml" />
+      <change type="MOVED" beforePath="F:\IdeaProjects\RaspiRobotControl - Websocket\RaspiRobotControl.iml" afterPath="$PROJECT_DIR$/RaspiRobotControl_Websocket.iml" />
     </list>
     <ignored path="RaspiRobotControl.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,11 +30,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/de/raspirobotcontrol/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.493841">
+              <caret line="23" column="41" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
               <folding>
                 <element signature="e#0#2183#0" expanded="true" />
               </folding>
@@ -39,11 +42,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Server.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/de/raspirobotcontrol/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5643897">
-              <caret line="24" column="45" selection-start-line="24" selection-start-column="45" selection-end-line="24" selection-end-column="45" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="18" column="3" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="3" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -58,8 +61,6 @@
               <caret line="96" column="13" selection-start-line="96" selection-start-column="13" selection-end-line="96" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2976#2977#0" expanded="true" />
-                <element signature="e#3004#3005#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -145,9 +146,9 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -198,20 +199,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RaspiRobotControl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RaspiRobotControl - Websocket" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="out" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -220,7 +207,7 @@
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="true" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15416667" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="settings.github" />
@@ -409,7 +396,13 @@
       <option name="project" value="LOCAL" />
       <updated>1438720823099</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary=" - Websocket server which reads the commands from a connected client added.&#10; - Websocket server and DistanceMonitor optimized.">
+      <created>1438721284290</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1438721284290</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -475,6 +468,36 @@
     <entry file="file://$PROJECT_DIR$/src/de/raspirobotcontrol/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+          <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#2183#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/raspirobotcontrol/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/raspirobotcontrol/DistanceMonitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="96" column="13" selection-start-line="96" selection-start-column="13" selection-end-line="96" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/raspirobotcontrol/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
           <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
           <folding>
             <element signature="e#0#2183#0" expanded="true" />
@@ -498,8 +521,6 @@
           <caret line="84" column="17" selection-start-line="84" selection-start-column="17" selection-end-line="84" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2976#2977#0" expanded="true" />
-            <element signature="e#3004#3005#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -530,8 +551,6 @@
           <caret line="18" column="97" selection-start-line="18" selection-start-column="97" selection-end-line="18" selection-end-column="97" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2976#2977#0" expanded="true" />
-            <element signature="e#3004#3005#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -562,8 +581,6 @@
           <caret line="18" column="97" selection-start-line="18" selection-start-column="97" selection-end-line="18" selection-end-column="97" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2976#2977#0" expanded="true" />
-            <element signature="e#3004#3005#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -594,8 +611,6 @@
           <caret line="5" column="63" selection-start-line="5" selection-start-column="63" selection-end-line="5" selection-end-column="63" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2976#2977#0" expanded="true" />
-            <element signature="e#3004#3005#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -626,8 +641,6 @@
           <caret line="5" column="63" selection-start-line="5" selection-start-column="63" selection-end-line="5" selection-end-column="63" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2976#2977#0" expanded="true" />
-            <element signature="e#3004#3005#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -658,8 +671,6 @@
           <caret line="5" column="63" selection-start-line="5" selection-start-column="63" selection-end-line="5" selection-end-column="63" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2976#2977#0" expanded="true" />
-            <element signature="e#3004#3005#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -690,8 +701,6 @@
           <caret line="5" column="63" selection-start-line="5" selection-start-column="63" selection-end-line="5" selection-end-column="63" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2976#2977#0" expanded="true" />
-            <element signature="e#3004#3005#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -722,8 +731,6 @@
           <caret line="5" column="63" selection-start-line="5" selection-start-column="63" selection-end-line="5" selection-end-column="63" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2976#2977#0" expanded="true" />
-            <element signature="e#3004#3005#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -744,8 +751,6 @@
           <caret line="12" column="93" selection-start-line="12" selection-start-column="93" selection-end-line="12" selection-end-column="93" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2976#2977#0" expanded="true" />
-            <element signature="e#3004#3005#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -766,8 +771,6 @@
           <caret line="12" column="93" selection-start-line="12" selection-start-column="93" selection-end-line="12" selection-end-column="93" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2976#2977#0" expanded="true" />
-            <element signature="e#3004#3005#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -942,12 +945,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/raspirobotcontrol/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/de/raspirobotcontrol/Server.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+          <caret line="18" column="3" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="3" />
           <folding>
-            <element signature="e#0#2183#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -958,18 +961,16 @@
           <caret line="96" column="13" selection-start-line="96" selection-start-column="13" selection-end-line="96" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2976#2977#0" expanded="true" />
-            <element signature="e#3004#3005#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/raspirobotcontrol/Server.java">
+    <entry file="file://$PROJECT_DIR$/src/de/raspirobotcontrol/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5643897">
-          <caret line="24" column="45" selection-start-line="24" selection-start-column="45" selection-end-line="24" selection-end-column="45" />
+        <state vertical-scroll-proportion="0.493841">
+          <caret line="23" column="41" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#0#2183#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -980,7 +981,7 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
-          <last-edited>RaspiRobotControl:jar</last-edited>
+          <last-edited>RaspiRobotControl_Websocket:jar</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1028,7 +1029,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>RaspiRobotControl</last-edited>
+          <last-edited>RaspiRobotControl_Websocket</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
