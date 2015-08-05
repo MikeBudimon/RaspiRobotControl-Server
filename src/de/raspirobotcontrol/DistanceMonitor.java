@@ -2,8 +2,6 @@ package de.raspirobotcontrol;
 
 import com.pi4j.io.gpio.*;
 
-import java.io.IOException;
-
 /**
  * Measuring the distance to an object with a ultrasonic sensor
  */
@@ -79,8 +77,7 @@ public class DistanceMonitor implements Runnable {
 
                 // Sends the measured distance to the client when successfully connected.
                 if (Server.started) {
-                    Server.out.flush();
-                    Server.out.writeUTF(String.valueOf(measureDistance()));
+                    Main.queue.put(String.valueOf(measureDistance()));
                 }
 
                 // blink red led when distance is smaller than 25 cm
@@ -92,7 +89,7 @@ public class DistanceMonitor implements Runnable {
 
                 Thread.sleep(1100);
 
-            } catch (InterruptedException | IOException e) {
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }

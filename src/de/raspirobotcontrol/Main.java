@@ -8,8 +8,12 @@ package de.raspirobotcontrol;
 import com.pi4j.io.gpio.*;
 
 import java.io.IOException;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
 public class Main {
+
+    static BlockingQueue<String> queue = new ArrayBlockingQueue<>(100);
 
     public static void main(String[] args) throws InterruptedException, IOException {
 

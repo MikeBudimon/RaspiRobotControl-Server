@@ -19,11 +19,11 @@ import java.net.Socket;
  */
 public class Server implements Runnable {
 
-    static protected DataOutputStream out = null;
     static protected boolean started = false;
     private final GpioPinDigitalOutput buzzer;
     private final int pin1, pin2, pin3, pin4;
     protected Thread runningThread = null;
+    private DataOutputStream out = null;
     private int serverPort = 8080;
     private ServerSocket serverSocket = null;
     private boolean isStopped = false;
@@ -98,13 +98,11 @@ public class Server implements Runnable {
         started = true;
 
         String command;
-        String output;
 
         label:
         while (started) {
 
             command = in.readUTF();
-
 
             switch (command) {
                 case "8":  // forward
@@ -113,7 +111,6 @@ public class Server implements Runnable {
                     SoftPwm.softPwmWrite(3, 0);
                     SoftPwm.softPwmWrite(4, 100);
                     System.out.println("Forward!");
-                    output = "Forward!";
                     break;
 
                 case "2":  // backward
@@ -122,7 +119,6 @@ public class Server implements Runnable {
                     SoftPwm.softPwmWrite(3, 100);
                     SoftPwm.softPwmWrite(4, 0);
                     System.out.println("Backward!");
-                    output = "Backward!";
                     break;
 
                 case "5":  // stop
@@ -131,7 +127,6 @@ public class Server implements Runnable {
                     SoftPwm.softPwmWrite(3, 0);
                     SoftPwm.softPwmWrite(4, 0);
                     System.out.println("Stop!");
-                    output = "Stop!";
                     break;
 
                 case "4":  // left
@@ -140,7 +135,6 @@ public class Server implements Runnable {
                     SoftPwm.softPwmWrite(3, 0);
                     SoftPwm.softPwmWrite(4, 100);
                     System.out.println("Left!");
-                    output = "Left!";
                     break;
 
                 case "6":  // right
@@ -149,30 +143,27 @@ public class Server implements Runnable {
                     SoftPwm.softPwmWrite(3, 0);
                     SoftPwm.softPwmWrite(4, 0);
                     System.out.println("Right!");
-                    output = "Right!";
                     break;
 
                 case "0":  // audio-buzzer ON
                     buzzer.pulse(2000, PinState.HIGH);
                     System.out.println("Buzzer!");
-                    output = "Buzzer!";
                     break;
 
-                case "stop":
+                case "stop": // stop connection
                     started = false;
-                    out.close();
+                    this.out.close();
                     this.in.close();
+                    Main.queue.clear();
                     break label;
 
                 default:
-                    System.out.println("Invalid enter, You suck!");
-                    output = "Input invalid";
+                    System.out.println("Invalid enter!");
                     break;
             }
 
-            out.writeUTF(output);
+            out.writeUTF(Main.queue.take());
             Thread.sleep(100);
-
         }
     }
 
