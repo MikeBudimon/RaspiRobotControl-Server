@@ -12,6 +12,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.BlockingQueue;
 
 
 /**
@@ -21,6 +22,7 @@ public class Server implements Runnable {
 
     static protected boolean started = false;
     private final GpioPinDigitalOutput buzzer;
+    private final BlockingQueue<String> queue;
     protected Thread runningThread = null;
     private ServoDriver motorL_forw, motorL_bckw, motorR_bckw, motorR_forw;
     private DataOutputStream out = null;
@@ -35,7 +37,9 @@ public class Server implements Runnable {
      * Minimum width value:             0 (0us) 0%
      * Maximum width value:             2000 (20000us) 100%
      */
-    public Server(int port, GpioController gpio, Pin buzzer, int pin1, int pin2, int pin3, int pin4, ServoProvider servoProvider) throws IOException {
+    public Server(int port, GpioController gpio, Pin buzzer, int pin1, int pin2, int pin3, int pin4, ServoProvider servoProvider,
+                  BlockingQueue<String> queue) throws IOException {
+        this.queue = queue;
         this.serverPort = port;
         this.buzzer = gpio.provisionDigitalOutputPin(buzzer, PinState.LOW);
         this.buzzer.setShutdownOptions(true, PinState.LOW);
@@ -80,7 +84,7 @@ public class Server implements Runnable {
                     try {
                         this.out.close();
                         this.in.close();
-                        Main.queue.clear();
+                        queue.clear();
                         stopPwms();
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -103,7 +107,7 @@ public class Server implements Runnable {
 
         label:
         while (started) {
-            if (Main.queue.size() > 0) out.writeUTF(Main.queue.take());
+            if (queue.size() > 0) out.writeUTF(queue.take());
             if (in.available() > 0) command = in.readUTF();
 
             switch (command) {
@@ -112,47 +116,40 @@ public class Server implements Runnable {
                     motorR_forw.setServoPulseWidth(speed);
                     motorL_bckw.setServoPulseWidth(0);
                     motorR_bckw.setServoPulseWidth(0);
-                    //System.out.println("Forward!");
                     break;
                 case "2":  // backward
                     motorL_forw.setServoPulseWidth(0);
                     motorR_forw.setServoPulseWidth(0);
                     motorL_bckw.setServoPulseWidth(speed);
                     motorR_bckw.setServoPulseWidth(speed);
-                    //System.out.println("Backward!");
                     break;
                 case "5":  // stop
                     stopPwms();
-                    //System.out.println("Stop!");
                     break;
                 case "4":  // left
                     motorL_forw.setServoPulseWidth(0);
                     motorR_forw.setServoPulseWidth(speed);
                     motorL_bckw.setServoPulseWidth(speed);
                     motorR_bckw.setServoPulseWidth(0);
-                    //System.out.println("Left!");
                     break;
                 case "6":  // right
                     motorL_forw.setServoPulseWidth(speed);
                     motorR_forw.setServoPulseWidth(0);
                     motorL_bckw.setServoPulseWidth(0);
                     motorR_bckw.setServoPulseWidth(speed);
-                    //System.out.println("Right!");
                     break;
                 case "0":  // audio-buzzer ON
                     buzzer.pulse(1000, PinState.HIGH);
-                    //System.out.println("Buzzer!");
                     break;
                 case "stop": // stop connection
                     started = false;
                     this.out.close();
                     this.in.close();
-                    Main.queue.clear();
+                    queue.clear();
                     stopPwms();
                     break label;
                 default:
                     stopPwms();
-                    //System.out.println("Invalid enter!");
                     break;
             }
             Thread.sleep(100);

@@ -15,11 +15,11 @@ import java.util.concurrent.BlockingQueue;
 
 public class Main {
 
-    static BlockingQueue<String> queue = new ArrayBlockingQueue<>(100);
-
     public static void main(String[] args) throws InterruptedException, IOException {
 
         System.out.println("RaspiRobotControl - Server started!");
+
+        BlockingQueue<String> queue = new ArrayBlockingQueue<>(100);
 
         // initialize gpios
         final GpioController gpio = GpioFactory.getInstance();
@@ -29,18 +29,16 @@ public class Main {
         pinLed.setShutdownOptions(true, PinState.LOW);    // P1-13: progammstatus Led
         final ServoProvider servoProvider = new RPIServoBlasterProvider();
 
-
         pinLed.high(); // program started Led
-        System.out.println("Enter from 2,4,5,6,8 to control,\t" + "Enter 0 to buzz,\t" + "Enter q to quit!");
 
         // starts web socket server
-        Server server = new Server(9000, gpio, pinBuzzer, 0, 1, 3, 4, servoProvider);
+        Server server = new Server(9000, gpio, pinBuzzer, 0, 1, 3, 4, servoProvider, queue);
         Thread serverControl = new Thread(server);
         serverControl.start();
 
 
         // prints every seconds the calculated distance to the nearest object
-        DistanceMonitor distanceMonitor = new DistanceMonitor(gpio, pinLedWarning);
+        DistanceMonitor distanceMonitor = new DistanceMonitor(gpio, pinLedWarning, queue);
         Thread threadDistance = new Thread(distanceMonitor);
         threadDistance.start();
 
