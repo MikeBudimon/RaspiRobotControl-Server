@@ -36,7 +36,6 @@ public class Main {
         Thread serverControl = new Thread(server);
         serverControl.start();
 
-
         // prints every seconds the calculated distance to the nearest object
         DistanceMonitor distanceMonitor = new DistanceMonitor(gpio, pinLedWarning, queue);
         Thread threadDistance = new Thread(distanceMonitor);
